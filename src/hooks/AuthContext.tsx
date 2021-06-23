@@ -22,7 +22,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<User>();
 
     const getUserInfos = (user: any): void => {
-        console.log(user)
         const { displayName, photoURL, uid } = user;
         if (!displayName || !photoURL) {
             throw new Error("Missing information form Google Account")
