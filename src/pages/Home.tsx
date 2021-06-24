@@ -12,6 +12,7 @@ import '../styles/auth.scss'
 import { FormEvent } from 'react';
 import { useState } from 'react';
 import { database } from '../services/firebase';
+import toast, { Toaster } from 'react-hot-toast';
 
 export function Home() {
 
@@ -38,7 +39,15 @@ export function Home() {
         const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
         if (!roomRef.exists()) {
-            return alert("Room not exists");
+            return toast('Sala Não encontrada!', {
+                duration: 2000,
+            });
+        }
+
+        if (roomRef.val().endedAt) {
+            return toast('Sala já encerrada!', {
+                duration: 2000,
+            });
         }
 
         history.push(`/rooms/${roomCode}`)
@@ -46,6 +55,7 @@ export function Home() {
 
     return (
         <div id="page-auth">
+            <Toaster />
             <aside>
                 <img src={illustrationImg} alt="illustration" />
                 <strong>Crie salas de Q&amp;A ao vivo</strong>
