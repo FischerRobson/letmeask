@@ -4,6 +4,8 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import logoImg from '../assets/images/logo.svg';
 import deleteImg from '../assets/images/delete.svg';
+import checkImg from '../assets/images/check.svg';
+import asnwerImg from '../assets/images/answer.svg';
 
 import { Button } from '../components/Button';
 import { RoomCode } from '../components/RoomCode';
@@ -39,8 +41,20 @@ export function AdminRoom() {
 
     const handleDeleteQuestion = async (questionId: string) => {
         if (window.confirm("Tem certeza que deseja excluir esta pergunta?")) {
-            await database.ref(`rooms/${roomId}/questions/${questionId}/`).remove()
+            await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
         }
+    }
+
+    const handleCheckQuestionAsAnswered = async (questionId: string) => {
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+            isAnswered: true
+        });
+    }
+
+    const handleHighlightQuestion = async (questionId: string) => {
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+            isHighLighted: true
+        });
     }
 
     return (
@@ -64,15 +78,27 @@ export function AdminRoom() {
 
                 <div className="question-list">
                     {questions.map(question => {
-                        return ( 
+                        return (
                             <Question
                                 key={question.id}
                                 content={question.content}
                                 author={question.author}
                                 id={question.id}
+                                isAnswered={question.isAnswered}
+                                isHighLighted={question.isHighLighted}
                             >
+                                {!question.isAnswered && (
+                                    <>
+                                        <button type="button" onClick={() => handleCheckQuestionAsAnswered(question.id)}>
+                                            <img src={checkImg} alt="marcar pergunta" />
+                                        </button>
+                                        <button type="button" onClick={() => handleHighlightQuestion(question.id)}>
+                                            <img src={asnwerImg} alt="destacar pergunta" />
+                                        </button>
+                                    </>
+                                )}
                                 <button type="button" onClick={() => handleDeleteQuestion(question.id)}>
-                                    <img src={deleteImg} alt="delete question" />
+                                    <img src={deleteImg} alt="deletar pergunta" />
                                 </button>
                             </Question>
                         )
@@ -80,6 +106,6 @@ export function AdminRoom() {
                 </div>
 
             </main>
-       </div>
+        </div>
     )
 }

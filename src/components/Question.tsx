@@ -1,21 +1,21 @@
 import { ReactNode } from 'react';
 import '../styles/question.scss';
 
-type Question = {
+type QuestionType = {
     id: string;
     author: {
         name: string,
         avatar: string,
     };
     content: string;
-    // isAnswered: boolean;
-    // isHighLighted: boolean;
+    isAnswered?: boolean;
+    isHighLighted?: boolean;
     children?: ReactNode;
 }
 
-export function Question({id, author, content, children} :Question) {
+export function Question({id, author, content, isAnswered = false, isHighLighted= false, children} :QuestionType) {
     return (
-        <div className="question">
+        <div className={`question ${isAnswered ? 'answered' : ""} ${isHighLighted? 'highlighted' : ""}`}>
             <p>{content}</p>
             <footer>
                 <div className="user-info">
