@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="letmeask" title="letmeask" src=".github/logo.png" />
+  <img alt="letmeask" title="letmeask" src=".github/logo.svg" />
 </h1>
 
 <p align="center">
@@ -18,7 +18,7 @@
 <br>
 
 <p align="center">
-  <img alt="Happy" src=".github/letmeask.png" width="100%">
+  <img alt="letmeask" src=".github/letmeask.png" width="100%">
 </p>
 
 ## ✨ Tecnologias
