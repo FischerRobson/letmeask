@@ -37,6 +37,13 @@ se juntar a uma sala já existente, bastando apenas se logar com sua conta Googl
 de outros usuários. Do contrário, você irá gerenciar as questões que chegarem em sua sala, podendo marca-las como destacadas, respondidas ou exclui-las.
 
 
+<div align="center">
+  <h3>Sala de Usuário</h3>
+  <img alt="room" title="room" src=".github/room.png" />
+  <h3>Sala de Admin</h3>
+  <img alt="admin room" title="admin" src=".github/adminroom.png" />
+</div>
+
 ## 🚀 Como executar
 
 Primeiro faça o download do repositório:
